@@ -1,0 +1,93 @@
+<template>
+  <div class="sidebar">
+      <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse"
+        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        
+        <template v-for="menu in menuList">
+            <template v-if="menu.subs">
+                <el-submenu :index="menu.index" :key="menu.index">
+                    <template slot="title">
+                        <i :class="menu.icon"></i><span slot="title">{{ menu.title }}</span>
+                    </template>
+                    <el-menu-item v-for="(subMenu, i) in menu.subs" :key="i" :index="subMenu.index">
+                        {{ subMenu.title }}
+                    </el-menu-item>
+                </el-submenu>
+            </template>
+            <template v-else>
+                <el-menu-item :index="menu.index" :key="menu.index">
+                    <i :class="menu.icon"></i><span slot="title">{{ menu.title }}</span>
+                </el-menu-item>
+            </template>
+        </template>    
+
+      </el-menu>
+  </div>
+</template>
+<script>
+export default {
+  name: "Sidebar",
+  data() {
+    return {
+      collapse: false,
+      menuList: [
+        {
+          icon: "el-icon-edit",
+          index: "addBill",
+          title: "添加账目"
+        },
+        {
+          icon: "el-icon-document",
+          index: "billList",
+          title: "账单列表",
+          subs: [
+            {
+              index: "outgo",
+              title: "支出账单"
+            },
+            {
+              index: "income",
+              title: "收入账单"
+            }
+          ]
+        },
+        {
+          icon: "el-icon-news",
+          index: "categoryList",
+          title: "收支分类",
+          subs: [
+            {
+              index: "outgo",
+              title: "支出分类"
+            },
+            {
+              index: "income",
+              title: "收入分类"
+            }
+          ]
+        },
+        {
+          icon: "el-icon-tickets",
+          index: "statistics",
+          title: "统计报表"
+        }
+      ]
+    };
+  },
+
+};
+</script>
+
+<style scoped>
+.sidebar {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+}
+.sidebar > ul {
+  height: 100%;
+}
+</style>
+

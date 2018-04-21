@@ -1,17 +1,23 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <v-header></v-header>
+    <v-sidebar></v-sidebar>
     <!-- <el-button round @click="submit">进入主页</el-button> -->
   </div>
 </template>
 
 <script>
+import vHeader from './Header'
+import vSidebar from './Sidebar'
 export default {
   name: 'Home',
   data () {
     return {
-      msg: 'THIS IS HOME PAGE!'
+      msg: '我的记账本'
     }
+  },
+  components: {
+    vHeader, vSidebar
   },
   methods: {
       submit: function(message, event) {
