@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-      <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse"
+      <el-menu class="sidebar-menu" :default-active="onRoutes" :collapse="collapse"
         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         
         <template v-for="menu in menuList">
@@ -25,6 +25,8 @@
   </div>
 </template>
 <script>
+import bus from './bus'
+
 export default {
   name: "Sidebar",
   data() {
@@ -74,7 +76,11 @@ export default {
       ]
     };
   },
-
+  created() {
+    bus.$on('collapse', msg => {
+      this.collapse = msg
+    })
+  }
 };
 </script>
 
@@ -85,6 +91,9 @@ export default {
   left: 0;
   top: 70px;
   bottom: 0;
+}
+.sidebar-menu:not(.el-menu--collapse) {
+  width: 250px;
 }
 .sidebar > ul {
   height: 100%;
