@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
       <el-menu class="sidebar-menu" :default-active="onRoutes" :collapse="collapse"
-        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" collapse-transition unique-opened router>
         
         <template v-for="menu in menuList">
             <template v-if="menu.subs">
@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import bus from './bus'
+import bus from "./bus";
 
 export default {
   name: "Sidebar",
@@ -34,52 +34,57 @@ export default {
       collapse: false,
       menuList: [
         {
+          icon: "el-icon-tickets",
+          index: "statistics",
+          title: "统计报表"
+        },
+        {
           icon: "el-icon-edit",
           index: "addBill",
           title: "添加账目"
         },
         {
           icon: "el-icon-document",
-          index: "billList",
+          index: "bills",
           title: "账单列表",
           subs: [
             {
-              index: "outgo",
+              index: "outgoList",
               title: "支出账单"
             },
             {
-              index: "income",
+              index: "incomeList",
               title: "收入账单"
             }
           ]
         },
         {
           icon: "el-icon-news",
-          index: "categoryList",
+          index: "categorys",
           title: "收支分类",
           subs: [
             {
-              index: "outgo",
+              index: "outgoCategory",
               title: "支出分类"
             },
             {
-              index: "income",
+              index: "incomeCategory",
               title: "收入分类"
             }
           ]
-        },
-        {
-          icon: "el-icon-tickets",
-          index: "statistics",
-          title: "统计报表"
         }
       ]
     };
   },
+  computed: {
+    onRoutes() {
+      return this.$route.path.replace("/", "");
+    }
+  },
   created() {
-    bus.$on('collapse', msg => {
-      this.collapse = msg
-    })
+    bus.$on("collapse", msg => {
+      this.collapse = msg;
+    });
   }
 };
 </script>

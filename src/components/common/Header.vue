@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       collapse: false,
-      title: "八哥記賬本",
+      title: "記賬本",
       username: "INK"
     };
   },
@@ -73,8 +73,8 @@ export default {
 }
 
 .header-title .logo {
-    width:40px;
-    height:40px;
+    width: 35px;
+    height: 35px;
     vertical-align: middle;
 }
 
