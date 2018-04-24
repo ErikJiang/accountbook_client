@@ -1,11 +1,6 @@
 <template>
   <div>
-
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>收支分类</el-breadcrumb-item>
-    <el-breadcrumb-item>支出类别</el-breadcrumb-item>
-    </el-breadcrumb>
+    <v-bread title="支出类别" desc="支出类别管理" :list="list"></v-bread>
 
     <h1>{{ msg }}</h1>
     <h2>OutgoCategory Page</h2>
@@ -13,12 +8,20 @@
 </template>
 
 <script>
+import vBread from '../common/Bread'
 export default {
   name: 'OutgoCategory',
   data () {
     return {
-      msg: '支出类别管理页面'
+      msg: '支出类别管理页面',
+      list: [
+        {name: '收支分类', path: ''},
+        {name: '支出类别', path: '/outgoCategory'}
+      ]
     }
+  },
+  components: {
+    vBread
   }
 }
 </script>

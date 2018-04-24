@@ -1,10 +1,6 @@
 <template>
   <div>
-
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>统计报表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <v-bread title="统计报表" desc="统计收入支出数据" :list="list"></v-bread>
 
     <h1>{{ msg }}</h1>
     <h2>Statistics Page</h2>
@@ -12,12 +8,22 @@
 </template>
 
 <script>
+import vBread from '../common/Bread'
 export default {
   name: 'Statistics',
   data () {
     return {
-      msg: '图表统计页面'
+      msg: '图表统计页面',
+      list: [
+        {
+          name: "统计报表",
+          path: "/statistics"
+        }
+      ]
     }
+  },
+  components: {
+    vBread
   }
 }
 </script>

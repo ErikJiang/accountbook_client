@@ -1,24 +1,31 @@
 <template>
   <div>
+    <v-bread title="收入列表" desc="收入数据列表" :list="list"></v-bread>
 
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>账单列表</el-breadcrumb-item>
-    <el-breadcrumb-item>收入列表</el-breadcrumb-item>
-    </el-breadcrumb>
-
-    <h1>{{ msg }}</h1>
-    <h2>IncomeList Page</h2>
   </div>
 </template>
 
 <script>
+import vBread from '../common/Bread'
 export default {
   name: 'IncomeList',
   data () {
     return {
-      msg: '收入账单列表页面'
+      msg: '收入账单列表页面',
+      list: [
+        {
+          name: '账单列表',
+          path: ''
+        },
+        {
+          name: '收入列表',
+          path: '/incomeList'
+        }
+      ]
     }
+  },
+  components: {
+    vBread
   }
 }
 </script>

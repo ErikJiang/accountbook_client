@@ -1,10 +1,6 @@
 <template>
   <div>
-
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>新增账目</el-breadcrumb-item>
-    </el-breadcrumb>
+    <v-bread title="新增账目" desc="新增收入支出账目数据" :list="list"></v-bread>
 
     <h1>{{ msg }}</h1>
     <h2>AddBill Page</h2>
@@ -12,12 +8,22 @@
 </template>
 
 <script>
+import vBread from '../common/Bread'
 export default {
   name: 'AddBill',
   data () {
     return {
-      msg: '新增账目页面'
+      msg: '新增账目页面',
+      list: [
+        {
+          name: '新增账目',
+          path: '/addBill'
+        }
+      ]
     }
+  },
+  components: {
+    vBread
   }
 }
 </script>

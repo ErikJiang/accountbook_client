@@ -10,7 +10,7 @@ html,body,#app,.wrapper {
 }
 
 body {
-    font-family:'PingFang SC', "Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+    font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';
 }
 .content {
     background: none repeat scroll 0 0 #f0f0f0;
