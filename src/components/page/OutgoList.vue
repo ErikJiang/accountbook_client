@@ -2,7 +2,7 @@
   <div>
     <v-bread title="支出列表" desc="支出数据列表页面" :list="list"></v-bread>
 
-    <div class="outgoContent">
+    <div class="container">
       <div class="search">
 
         <el-select v-model="selectVal" placeholder="请选择" clearable>
@@ -12,7 +12,7 @@
         </el-select>
 
         <el-date-picker v-model="dateVal" type="daterange" align="right" unlink-panels
-          start-placeholder="开始日期" range-separator="至" end-placeholder="结束日期" :picker-options="pickerOptions">
+          start-placeholder="开始日期" range-separator="至" end-placeholder="结束日期">
         </el-date-picker>
 
       </div>
@@ -22,27 +22,56 @@
           <el-table-column type="selection" width="60" fixed> </el-table-column>
           <el-table-column prop="category" label="分类" width="120"></el-table-column>
           <el-table-column prop="amount" label="金额" width="120"></el-table-column>
-          <el-table-column prop="date" label="时间" width="120"></el-table-column>
+          <el-table-column prop="date" label="日期" width="120"></el-table-column>
           <el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>
           <el-table-column fixed="right" label="操作" width="120">
             <template slot-scope="scope">
-              <el-button type="text" size="small">编辑</el-button>
-              <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>
+              <el-button type="text" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button type="text" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
-
-        <div class="pagenation">
-          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-            :current-page="currentPage" :page-sizes="[5, 10, 20, 40]" :page-size="5"
-            layout="total, sizes, prev, pager, next, jumper" :total="40">
-          </el-pagination>
-        </div>
-
       </div>
+
+      <div class="pagenation">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+          :current-page="currentPage" :page-sizes="[5, 10, 20, 40]" :page-size="5"
+          layout="total, sizes, prev, pager, next, jumper" :total="40">
+        </el-pagination>
+      </div>
+
     </div>
 
+    <!-- 编辑弹出框 -->
+    <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
+        <el-form ref="form" :model="form" label-width="50px">
+            <el-form-item label="分类">
+                <el-input v-model="form.category"></el-input>
+            </el-form-item>
+            <el-form-item label="金额">
+                <el-input v-model="form.amount"></el-input>
+            </el-form-item>
+            <el-form-item label="日期">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+            <el-form-item label="备注">
+                <el-input v-model="form.remark"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="editVisible = false">取 消</el-button>
+            <el-button type="primary" @click="saveEdit">确 定</el-button>
+        </span>
+    </el-dialog>
 
+    <!-- 删除提示框 -->
+    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
+        <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="delVisible = false">取 消</el-button>
+            <el-button type="primary" @click="deleteRow">确 定</el-button>
+        </span>
+    </el-dialog>
     
 
   </div>
@@ -79,39 +108,17 @@ export default {
         }
       ],
       dateVal: '',
-      pickerOptions: {
-        shortcuts: [{
-          text: '最近一周',
-          onClick(picker) {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-            picker.$emit('pick', [start, end]);
-          }
-        }, {
-          text: '最近一个月',
-          onClick(picker) {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-            picker.$emit('pick', [start, end]);
-          }
-        }, {
-          text: '最近三个月',
-          onClick(picker) {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-            picker.$emit('pick', [start, end]);
-          }
-        }]
-      },
       outgoList: [
         {category: '午餐', amount: 14.5, date: '2018-04-15', remark: '武汉热干面'},
         {category: '水果', amount: 20.0, date: '2018-04-15', remark: '西昌枇杷'},
         {category: '晚餐', amount: 30.0, date: '2018-04-15', remark: '麻辣小龙虾'},
       ],
-      currentPage: 10
+      currentPage: 10,
+      editVisible: false,
+      delVisible: false,
+      form: {
+        category: '午餐', amount: 14.5, date: '2018-04-15', remark: '武汉热干面'
+      }
     }
   },
   components: {
@@ -123,6 +130,15 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
+    },
+    handleEdit(index, row) {
+      console.log(`handleEdit > index: ${index}, row: ${JSON.stringify(row)}.`);
+      this.form = row;
+      this.editVisible = true;
+    },
+    handleDel(index, row) {
+      console.log(`handleDel > index: ${index}, row: ${JSON.stringify(row)}.`);
+      this.delVisible = true;
     }
   },
 }
@@ -130,12 +146,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.search {
-  margin-bottom: 15px;
-}
 
-.pagenation {
-  margin-top: 15px;
-  float: right;
-}
 </style>
