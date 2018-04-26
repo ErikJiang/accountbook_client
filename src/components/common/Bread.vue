@@ -5,7 +5,7 @@
         <p class="desc">{{ desc }}</p>
     </div>
     <el-breadcrumb separator-class="el-icon-arrow-right" class="bread-nav">
-        <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/dashboard' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item v-for="(item, index) in list" :key="index" :to="{path: item.path}">{{ item.name }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>

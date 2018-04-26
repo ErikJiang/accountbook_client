@@ -5,7 +5,7 @@
     <div class="container"> 
       <div class="table">
         <el-table ref="multipleTable" :data="outgoCategorys" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-          <el-table-column prop="name" label="分类名称" width="640"></el-table-column>
+          <el-table-column prop="name" label="分类名称" show-overflow-tooltip></el-table-column>
           <el-table-column fixed="right" label="操作" width="120">
             <template slot-scope="scope">
               <el-button type="text" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

@@ -35,6 +35,11 @@ export default {
       menuList: [
         {
           icon: "el-icon-tickets",
+          index: "dashboard",
+          title: "账本首页"
+        },
+        {
+          icon: "el-icon-tickets",
           index: "statistics",
           title: "统计报表"
         },
@@ -72,7 +77,12 @@ export default {
               title: "收入分类"
             }
           ]
-        }
+        },
+        {
+          icon: "el-icon-edit",
+          index: "dataIO",
+          title: "导入导出"
+        },
       ]
     };
   },
