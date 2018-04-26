@@ -5,8 +5,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.use(ElementUI, {size: 'small'})
+Vue.component('icon', Icon)
 
 Vue.config.productionTip = false
 
