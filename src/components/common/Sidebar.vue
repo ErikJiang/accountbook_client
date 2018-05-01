@@ -7,7 +7,7 @@
             <template v-if="menu.subs">
                 <el-submenu :index="menu.index" :key="menu.index">
                     <template slot="title">
-                        <i :class="menu.icon"></i><span slot="title">{{ menu.title }}</span>
+                        <icon :name="menu.icon" class='icon'></icon><span slot="title">{{ menu.title }}</span>
                     </template>
                     <el-menu-item v-for="(subMenu, i) in menu.subs" :key="i" :index="subMenu.index">
                         {{ subMenu.title }}
@@ -16,7 +16,7 @@
             </template>
             <template v-else>
                 <el-menu-item :index="menu.index" :key="menu.index">
-                    <i :class="menu.icon"></i><span slot="title">{{ menu.title }}</span>
+                    <icon :name="menu.icon" class='icon'></icon><span slot="title">{{ menu.title }}</span>
                 </el-menu-item>
             </template>
         </template>    
@@ -34,22 +34,22 @@ export default {
       collapse: false,
       menuList: [
         {
-          icon: "el-icon-tickets",
+          icon: "tachometer-alt",
           index: "dashboard",
           title: "账本首页"
         },
         {
-          icon: "el-icon-tickets",
+          icon: "chart-bar",
           index: "statistics",
           title: "统计报表"
         },
         {
-          icon: "el-icon-edit",
+          icon: "plus-square",
           index: "addBill",
           title: "添加账目"
         },
         {
-          icon: "el-icon-document",
+          icon: "list",
           index: "bills",
           title: "账单列表",
           subs: [
@@ -64,7 +64,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-news",
+          icon: "sitemap",
           index: "categorys",
           title: "收支分类",
           subs: [
@@ -79,10 +79,10 @@ export default {
           ]
         },
         {
-          icon: "el-icon-edit",
+          icon: "database",
           index: "dataIO",
           title: "导入导出"
-        },
+        }
       ]
     };
   },
@@ -113,5 +113,13 @@ export default {
 .sidebar > ul {
   height: 100%;
 }
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
 </style>
 
