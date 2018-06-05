@@ -5,7 +5,7 @@ const url = 'http://127.0.0.1:8000';
 const instance = axios.create({
   baseURL: url,
   headers: {
-    'Context-Type': 'application/json'
+    'Content-Type': 'application/json'
   },
   timeout: 10000
 });

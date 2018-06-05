@@ -1,116 +1,113 @@
-import { axiosGet, axiosPost, axiosPut, axiosDel } from './axios';
+import { axiosGet, axiosPost, axiosPut, axiosDel } from './axios'
 
-const url_prefix = '/api/v1';
+const urlPrefix = '/api/v1'
 
 // rest-auth
 
 // 登录
-export function login(obj) {
-  return axiosPost(`${url_prefix}/rest-auth/login`, obj)
+export function login (obj) {
+  return axiosPost(`${urlPrefix}/rest-auth/login/`, obj)
 }
 
 // 注销
-export function logout(obj) {
-  return axiosPost(`${url_prefix}/rest-auth/logout`, obj);
+export function logout (obj) {
+  return axiosPost(`${urlPrefix}/rest-auth/logout/`, obj)
 }
 
 // 修改密码
-export function changePWD(obj) {
-  return axiosPost(`${url_prefix}/rest-auth/password/change`, obj);
+export function changePWD (obj) {
+  return axiosPost(`${urlPrefix}/rest-auth/password/change/`, obj)
 }
 
 // 注册
-export function register(obj) {
-  return axiosPost(`${url_perfix}/rest-auth/registration`, obj);
+export function register (obj) {
+  return axiosPost(`${urlPrefix}/rest-auth/registration/`, obj)
 }
 
 // 获取用户信息
-export function getUser(obj) {
-  return axiosGet(`${url_perfix}/rest-auth/user`, obj);
+export function getUser (obj) {
+  return axiosGet(`${urlPrefix}/rest-auth/user/`, obj)
 }
 
 // 修改用户信息
-export function editUser(obj) {
-  return axiosPut(`${url_perfix}/rest-auth/user`, obj);
+export function editUser (obj) {
+  return axiosPut(`${urlPrefix}/rest-auth/user/`, obj)
 }
-
 
 // bills
 
 // 获取账目列表
-export function getBills(obj) {
-  return axiosGet(`${url_perfix}/bills`, obj);
+export function getBills (obj) {
+  return axiosGet(`${urlPrefix}/bills/`, obj)
 }
 
 // 创建新账目
-export function addBills(obj) {
-  return axiosPost(`${url_perfix}/bills`, obj);
+export function addBills (obj) {
+  return axiosPost(`${urlPrefix}/bills/`, obj)
 }
 
 // 删除单个账目
-export function delBills(id) {
-  return axiosPost(`${url_perfix}/bills/${id}`, {});
+export function delBills (id) {
+  return axiosPost(`${urlPrefix}/bills/${id}/`, {})
 }
 
 // 删除单个账目
-export function batchDelBills(ids) {
-  return axiosDel(`${url_perfix}/bills`, ids);
+export function batchDelBills (ids) {
+  return axiosDel(`${urlPrefix}/bills/`, ids)
 }
 
 // 获取账目信息
-export function getBills(id) {
-  return axiosGet(`${url_perfix}/bills/${id}`, {});
+export function getBill (id) {
+  return axiosGet(`${urlPrefix}/bills/${id}/`, {})
 }
 
 // 编辑账目信息
-export function editBills(id, obj) {
-  return axiosPut(`${url_perfix}/bills/${id}`, obj);
-}
-
+export function editBill (id, obj) {
+  return axiosPut(`${urlPrefix}/bills/${id}/`, obj)
+}  
 
 // categorys
 
 // 获取类别列表
-export function getCategorys(obj) {
-  return axiosGet(`${url_perfix}/categorys`, obj);
+export function getCategorys (obj) {
+  return axiosGet(`${urlPrefix}/categorys/`, obj)
 }
 
 // 添加新类别
-export function addCategory(obj) {
-  return axiosPost(`${url_perfix}/categorys`, obj);
+export function addCategory (obj) {
+  return axiosPost(`${urlPrefix}/categorys/`, obj)
 }
 
 // 获取类别信息
-export function getCategory(id) {
-  return axiosGet(`${url_perfix}/categorys/${id}`);
+export function getCategory (id) {
+  return axiosGet(`${urlPrefix}/categorys/${id}/`)
 }
 
 // 修改类别信息
-export function editCategory(id, obj) {
-  return axiosPut(`${url_perfix}/categorys/${id}`, obj);
+export function editCategory (id, obj) {
+  return axiosPut(`${urlPrefix}/categorys/${id}/`, obj)
 }
 
 // 修改类别信息
-export function delCategory(id) {
-  return axiosDel(`${url_perfix}/categorys/${id}`, {});
+export function delCategory (id) {
+  return axiosDel(`${urlPrefix}/categorys/${id}/`, {})
 }
-
 
 // summaries
 
 // 概要信息
-export function getSummaries(obj) {
-  return axiosGet(`${url_perfix}/summaries/info`, obj);
+export function getSummaries (obj) {
+  return axiosGet(`${urlPrefix}/summaries/info/`, obj)
 }
 
 // 折线图
-export function getLineChart(obj) {
-  return axiosGet(`${url_perfix}/summaries/linechart`, obj);
+export function getLineChart (obj) {
+  return axiosGet(`${urlPrefix}/summaries/linechart/`, obj)
 }
 
 // 环状图
-export function getRingChart(obj) {
-  return axiosGet(`${url_perfix}/summaries/ringchart`, obj);
+export function getRingChart (obj) {
+  return axiosGet(`${urlPrefix}/summaries/ringchart/`, obj)
 }
 
 // utils
